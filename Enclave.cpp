@@ -10,8 +10,8 @@
 #include <sstream>
 #include <algorithm>
 
-#include "/SFML/Network.hpp"
-#include "/SFML/Network/Http.hpp"
+#include "./SFML/Network.hpp"
+#include "./SFML/Network/Http.hpp"
 
 using namespace std;
 using namespace sf;
