@@ -10,13 +10,43 @@
 #include <sstream>
 #include <algorithm>
 
-
+#include "/SFML/Network.hpp"
+#include "/SFML/Network/Http.hpp"
 
 using namespace std;
+using namespace sf;
 
 
 #define MAXSIZE  1024;
 #define HISTSIZE 1024;
+
+void requete() {
+
+	// préparation de la requête
+	sf::Http::Request request("search?q=", sf::Http::Request::Post);
+
+	/*
+	// encodage des paramètres dans le corps de la requête
+	std::ostringstream stream;
+	stream << "a";
+	request.setBody(stream.str());
+
+	// envoi de la requête au serveur
+	sf::Http http("https://www.google.com/");
+	sf::Http::Response response = http.sendRequest(request);
+
+	// vérification du statut
+	if (response.getStatus() == sf::Http::Response::Ok)
+	{
+		// affichage de la réponse du serveur
+		std::cout << response.getBody() << std::endl;
+	}
+	else
+	{
+		std::cout << "request failed" << std::endl;
+	}
+	*/
+}
 
 
 vector <string> seperateWords(string S) {
