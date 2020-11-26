@@ -29,21 +29,21 @@
 // Headers
 ////////////////////////////////////////////////////////////
 
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\System.hpp>
-#include"C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Clipboard.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Context.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/ContextSettings.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Cursor.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Event.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Joystick.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Keyboard.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Mouse.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Sensor.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Touch.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/VideoMode.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/Window.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/WindowHandle.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window/WindowStyle.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window/Clipboard.hpp>
+#include <SFML/Window/Context.hpp>
+#include <SFML/Window/ContextSettings.hpp>
+#include <SFML/Window/Cursor.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/Joystick.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Window/Mouse.hpp>
+#include <SFML/Window/Sensor.hpp>
+#include <SFML/Window/Touch.hpp>
+#include <SFML/Window/VideoMode.hpp>
+#include <SFML/Window/Window.hpp>
+#include <SFML/Window/WindowHandle.hpp>
+#include <SFML/Window/WindowStyle.hpp>
 
 
 

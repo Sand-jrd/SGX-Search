@@ -29,20 +29,20 @@
 // Headers
 ////////////////////////////////////////////////////////////
 
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\System.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/InputSoundFile.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/Listener.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/Music.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/OutputSoundFile.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/Sound.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/SoundBuffer.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/SoundBufferRecorder.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/SoundFileFactory.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/SoundFileReader.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/SoundFileWriter.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/SoundRecorder.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/SoundSource.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Audio/SoundStream.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Audio/InputSoundFile.hpp>
+#include <SFML/Audio/Listener.hpp>
+#include <SFML/Audio/Music.hpp>
+#include <SFML/Audio/OutputSoundFile.hpp>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio/SoundBufferRecorder.hpp>
+#include <SFML/Audio/SoundFileFactory.hpp>
+#include <SFML/Audio/SoundFileReader.hpp>
+#include <SFML/Audio/SoundFileWriter.hpp>
+#include <SFML/Audio/SoundRecorder.hpp>
+#include <SFML/Audio/SoundSource.hpp>
+#include <SFML/Audio/SoundStream.hpp>
 
 
 #endif // SFML_AUDIO_HPP

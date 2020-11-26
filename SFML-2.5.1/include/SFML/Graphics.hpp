@@ -29,33 +29,33 @@
 // Headers
 ////////////////////////////////////////////////////////////
 
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Window.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/BlendMode.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/CircleShape.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Color.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/ConvexShape.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Drawable.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Font.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Glyph.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Image.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/PrimitiveType.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Rect.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/RectangleShape.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/RenderStates.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/RenderTarget.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/RenderTexture.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/RenderWindow.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Shader.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Shape.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Sprite.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Text.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Texture.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Transform.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Transformable.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/Vertex.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/VertexArray.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/VertexBuffer.hpp>
-#include "C:\Users\Sandrine\SGX\SGX\SFML-2.5.1\include\SFML\Graphics/View.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics/BlendMode.hpp>
+#include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/ConvexShape.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Glyph.hpp>
+#include <SFML/Graphics/Image.hpp>
+#include <SFML/Graphics/PrimitiveType.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Shader.hpp>
+#include <SFML/Graphics/Shape.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Transform.hpp>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Vertex.hpp>
+#include <SFML/Graphics/VertexArray.hpp>
+#include <SFML/Graphics/VertexBuffer.hpp>
+#include <SFML/Graphics/View.hpp>
 
 
 #endif // SFML_GRAPHICS_HPP
