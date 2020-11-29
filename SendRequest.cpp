@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
     struct hostent * host = gethostbyname("google.com");
 
     if ( (host == NULL) || (host->h_addr == NULL) ) {
-        cout << "Error retrieving DNS information." << endl;
+		printf("Error reciving DNS information.\n");
         exit(1);
     }
 
@@ -34,28 +34,26 @@ int main(int argc, char const *argv[])
     sock = socket(AF_INET, SOCK_STREAM, 0);
 
     if (sock < 0) {
-        cout << "Error creating socket." << endl;
+		printf("Error creating socket.\n");
         exit(1);
     }
 
     if ( connect(sock, (struct sockaddr *)&client, sizeof(client)) < 0 ) {
         close(sock);
-        cout << "Could not connect" << endl;
+		printf("Could not connect.\n");
         exit(1);
     }
 
-    stringstream ss;
-    ss << "GET /search?q=a+b" << "HTTP/1.1\r\n" << "\r\n\r\n";
-    string request = ss.str();
+    char * request = "GET /search?q=a+b HTTP/1.1\r\n \r\n\r\n";
 
-    if (send(sock, request.c_str(), request.length(), 0) != (int)request.length()) {
-        cout << "Error sending request." << endl;
+    if (send(sock, request, sizeof(request), 0) != sizeof(request)) {
+		printf("Error sending request.\n");
         exit(1);
     }
 
     char cur;
     while ( read(sock, &cur, 1) > 0 ) {
-        cout << cur;
+		printf(cur);
     }
 
     return 0;
