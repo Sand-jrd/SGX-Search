@@ -6,15 +6,14 @@
 #include <stdlib.h> 
 #include <cstdlib>
 #include <iterator>
-#include <iostream>
-#include <sstream>
 #include <algorithm>
+#include <iostream>
+#include <fstream>
 
-#include "./SFML/Network.hpp"
-#include "./SFML/Network/Http.hpp"
+//#include "./SFML/Network.hpp"
+//#include "./SFML/Network/Http.hpp"
 
 using namespace std;
-using namespace sf;
 
 
 #define MAXSIZE  1024;
@@ -23,7 +22,7 @@ using namespace sf;
 void requete() {
 
 	// préparation de la requête
-	sf::Http::Request request("search?q=", sf::Http::Request::Post);
+	//sf::Http::Request request("search?q=", sf::Http::Request::Post);
 
 	/*
 	// encodage des paramètres dans le corps de la requête
@@ -48,13 +47,48 @@ void requete() {
 	*/
 }
 
+void openDataSet() {
+	string line;
+	ifstream myfile("user-ct-test-collection-01.txt");
+	
+	vector <string> dataset;
+
+	if (myfile.is_open())
+	{
+		while (getline(myfile, line))
+		{
+			dataset.push_back(line);
+		}
+		myfile.close();
+	}
+
+	else cout << "Unable to open file";
+	
+	// Parse line : 
+
+	std::cout << dataset.at(0);
+
+
+}
+
 
 vector <string> seperateWords(string S) {
-	std::stringstream ss(S);
-	std::istream_iterator<std::string> begin(ss);
-	std::istream_iterator<std::string> end;
-	std::vector<std::string> vstrings(begin, end);
-	return vstrings;
+
+	vector <string> words;
+	string word = "";
+	for (auto curr : S)
+	{
+		if (curr == ' ') {
+			words.push_back(word);
+			word = "";
+		}
+		else {
+			word = word + curr;
+		}
+	}
+	words.push_back(word);
+	return words;
+
 }
 
 
@@ -62,6 +96,7 @@ int countCommon(string  Qi, string  Ri) {
 
 	vector <string> QWrords = seperateWords(Qi);
 	vector <string> RWrords = seperateWords(Ri);
+
 	int score = 0;
 
 	for (std::vector<string>::const_iterator Qwi = QWrords.begin(); Qwi != QWrords.end(); ++Qwi)
@@ -141,6 +176,8 @@ void filtering(string  Q, vector <string> HQ, vector <string> R, vector <string>
 
 int main() {
 
+
+	openDataSet();
 
 	// Test Obfucated 
 	cout << "\nStart Obfucated" << endl;
