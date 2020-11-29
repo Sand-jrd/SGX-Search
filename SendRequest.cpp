@@ -1,60 +1,75 @@
-#include <iostream>
-#include <ctype.h>
-#include <cstring>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <unistd.h>
-#include <sstream>
-#include <fstream>
-#include <string>
+#include <stdio.h> /* printf, sprintf */
+#include <stdlib.h> /* exit */
+#include <unistd.h> /* read, write, close */
+#include <string.h> /* memcpy, memset */
+#include <sys/socket.h> /* socket, connect */
+#include <netinet/in.h> /* struct sockaddr_in, struct sockaddr */
+#include <netdb.h> /* struct hostent, gethostbyname */
+#include <string.h>
+void error(const char *msg) { perror(msg); exit(0); }
 
-using namespace std;
-
-int sock;
-struct sockaddr_in client;
-int PORT = 80;
-
-int main(int argc, char const *argv[])
+int main(int argc,char *argv[])
 {
-    struct hostent * host = gethostbyname("google.com");
+    /* first what are we going to send and where are we going to send it? */
+    int portno =        80;
+    char *host =        "google.com";
+    char *message_fmt = "GET /search?q=a HTTP/1.0\r\n\r\n";
 
-    if ( (host == NULL) || (host->h_addr == NULL) ) {
-		printf("Error reciving DNS information.\n");
-        exit(1);
-    }
+    struct hostent *server;
+    struct sockaddr_in serv_addr;
+    int sockfd, bytes, sent, received, total;
+    char message[1024],response[4096];
 
-    bzero(&client, sizeof(client));
-    client.sin_family = AF_INET;
-    client.sin_port = htons( PORT );
-    memcpy(&client.sin_addr, host->h_addr, host->h_length);
+    strcpy(message,message_fmt);
 
-    sock = socket(AF_INET, SOCK_STREAM, 0);
+    /* create the socket */
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd < 0) error("ERROR opening socket");
 
-    if (sock < 0) {
-		printf("Error creating socket.\n");
-        exit(1);
-    }
+    /* lookup the ip address */
+    server = gethostbyname(host);
+    if (server == NULL) error("ERROR, no such host");
 
-    if ( connect(sock, (struct sockaddr *)&client, sizeof(client)) < 0 ) {
-        close(sock);
-		printf("Could not connect.\n");
-        exit(1);
-    }
+    /* fill in the structure */
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_port = htons(portno);
+    memcpy(&serv_addr.sin_addr.s_addr,server->h_addr,server->h_length);
 
-    char * request = "GET /search?q=a+b HTTP/1.1\r\n \r\n\r\n";
+    /* connect the socket */
+    if (connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0)
+        error("ERROR connecting");
 
-    if (send(sock, request, sizeof(request), 0) != sizeof(request)) {
-		printf("Error sending request.\n");
-        exit(1);
-    }
+    /* send the request */
+    total = strlen(message);
+    sent = 0;
+    do {
+        bytes = write(sockfd,message+sent,total-sent);
+        if (bytes < 0)
+            error("ERROR writing message to socket");
+        if (bytes == 0)
+            break;
+        sent+=bytes;
+    } while (sent < total);
 
-    char cur;
-    while ( read(sock, &cur, 1) > 0 ) {
-		printf(cur);
-    }
+    /* receive the response */
+    memset(response,0,sizeof(response));
+    total = sizeof(response)-1;
+    received = 0;
+    do {
+        bytes = read(sockfd,response+received,total-received);
+        if (bytes < 0)
+            error("ERROR reading response from socket");
+        if (bytes == 0)
+            break;
+        received+=bytes;
+    } while (received < total);
 
+    /* close the socket */
+    close(sockfd);
+
+    /* process response */
+    printf("Response:\n%s\n",response);
+    fflush(stdout);
     return 0;
 }
