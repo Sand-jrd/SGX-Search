@@ -235,7 +235,9 @@ int main(int argc, char *argv[])
 	int k = 3;
 	OriginalQuery = Q;
 	
-	ocall_send((char *)strQ.c_str(), &res, &length);
+	char* res; // pointer to string in untrusted memory that we would get form OCALL
+	size_t length = 0;  // length of string
+	ocall_send((char *)Q.c_str(), &res, &length);
 
 	char *trusted_res = new char[length + 1];
 

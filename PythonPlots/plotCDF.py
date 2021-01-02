@@ -2,50 +2,69 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-# Open files
-avec = open("RESULT/benchmaks_Enclave_3.txt",'r')
-sans = open("RESULT/benchmaks_NOEnclave_3.txt",'r')
+### Ploting fuction ###
 
 
-# Convert to float
+# Select file to plot
+Files = ['Enclave_3','NOEnclave_3','RAW']
 
-avecl = np.array(avec.readlines())
-avecf = np.sort(np.array([float(item.strip()) for item in avecl[::2]]))
+# Edit their legends
+Ledg = ['SGX-Search','Algorithms','Raw queries']
 
-sansl = np.array(sans.readlines())
-sansf = np.sort(np.array([float(item.strip()) for item in sansl[::2]]))
+# Set a title 
+name  = "Cumulative distribution function of SGX\n reponsivness compare to algorithms alone (K = 3)"
+
+# Parameters
+start = 0.2
+end = 0.6
+n = 100
+
+t = np.linspace(start,end,n)
+
+## Job
 
 
-t = np.linspace(0.3,1.0,70)
+for file in Files:
+    f = open("RESULT/benchmaks_"+file+".txt",'r') 
+    
+    # Convert to float
+    bmarks = np.array(f.readlines())
+    bmarksFolat = np.sort(np.array([float(item.strip()) for item in bmarks[::2]]))
 
-X  = 0.3
-dx = 0.01
-CDF = [0]*70
 
-for ele in sansf:
-    if ele < X:
-        p = int((X - 0.3)/dx)
-        CDF[p]=CDF[p]+1
-    else:
-        X=X+dx
-        p = int((X - 0.3)/dx)
-        CDF[p]=CDF[p-1]
+    X   = start
+    dx  = (end-start)/n
+    CDF = [0]*n
+    p   = 0 
+    
+    # Compute CDF
+    for ele in bmarksFolat:
+        if ele < X:
+            p = int((X - start)/dx)
+            CDF[p]=CDF[p]+1
+        else:
+            while ele >= X and p+1<n-1:
+                X=X+dx
+                p = int((X - start)/dx)
+                CDF[p]=CDF[p-1]
+            CDF[p]=CDF[p]+1
 
-plt.plot(t,np.array(CDF)/sansf.size)
-plt.hold(True)
+        
+    X=X+dx
+    p = int((X - start)/dx)
+    CDF[p]=CDF[p-1]    
+    
+    # Draw
+    courbe = np.array(CDF)/bmarksFolat.size
+    plt.plot(t,courbe)
+    plt.hold(True)
+    
+    
+## Plot Parameters
 
-X  = 0.3
-CDF = [0]*70
-
-for ele in avecf:
-    if ele < X:
-        p = int((X - 0.3)/dx)
-        CDF[p]=CDF[p]+1
-    else:
-        X=X+dx
-        p = int((X - 0.3)/dx)
-        CDF[p]=CDF[p-1]
-
-plt.plot(t,np.array(CDF)/avecf.size)
-
+plt.legend(Ledg,loc='best', fontsize=14)
+plt.xlabel('time (µs)')
+plt.ylabel('% of queries under time t')
+plt.title(name, fontsize=16)
+plt.grid(1)
 

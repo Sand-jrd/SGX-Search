@@ -1,44 +1,86 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+import numpy as np
+import matplotlib.pyplot as plt
 
-n    = 2000
+
+### Ploting fuction ###
+
+
+# Select file to plot
+K = [2,3,4,5]
+reference = 'RAW'
+
+
+# Edit their legends
+Ledg = ['SGX-Search K = 2','SGX-Search K = 3']
+
+# Set a title 
+name  = "My figure"
+
+# Parameters
+n    = 4500
 maxr = 15
+metric = []
 
-# Open files
-a4 = open("RESULT/output_Enclave_3.txt",'r')
-a5 = open("RESULT/output_Enclave_4.txt",'r')
+## Job
 
 
-# Convert to float
+# Process reference
 
-a4l = np.array(a4.readlines())
-a5l = np.array(a5.readlines())
+ref = open("RESULT/output_"+reference+".txt",'r') # Read from file
+outputsR = np.array(ref.readlines())
 
-sub = []
-req4 = []
-for input in range(1,len(a4l)):
-    if a4l[input] != '\n':
-        sub.append(a4l[input])
-    else:
+reqREF = []
+for input in range(0,len(outputsR)-1):            # Store proprely
+    sub = outputsR[input].split("\t")
+    sub.remove('\n')
+    if(len(sub)>0):
+        reqREF.append(sub)
+            
+            
+# Do job
+
+for file in K:
+    
+    f = open("RESULT/output_Enclave_"+str(file)+".txt",'r')   # Read from file
+    outputs = np.array(f.readlines())
+
+    req = []
+    for input in range(0,len(outputs)-1):        # Store proprely
+        sub = outputs[input].split("\t")
+        sub.remove('\n')
         if(len(sub)>0):
-            req4.append(sub[0].split("\t"))
-            sub = []
-    
-sub = []
-req5 = []
-for input in range(1,len(a5l)):
-    if a5l[input] != '\n':
-        sub.append(a5l[input])
-    else:
-        if(len(sub)>0):
-            req5.append(sub[0].split("\t"))
-            sub = []
-    
+            req.append(sub)
 
-countCommon = []
-for input in range(1,n):
-    intersection = set(req4[input]) & set(req5[input])
-    countCommon.append(len(intersection)-1)
-    
-plt.plot(countCommon)
+    # Count common
+    countCommon = []
+    for input in range(1,n):                     # Count common links
+        intersection = set(reqREF[input]) & set(req[input])
+        countCommon.append((len(intersection))/len(req[input]))
+        
+
+   # plot metrics as histogram bar
+    plt.hist([file-0.15],1, weights=[(sum(countCommon)/len(countCommon))],color = ['green'],
+            edgecolor = 'black',rwidth = 0.3)
+    plt.hist([file+0.15],1, weights=[(sum(countCommon)/len(countCommon))],color = ['yellow'],
+            edgecolor = 'black',rwidth = 0.3)
+    plt.hold(True)
+
+
+
+## Plot Parameters
+
+
+plt.title(name)
+plt.xticks(np.arange(2,6), ["K=2","K=3","K=4","K=5"], rotation=20)
+plt.ylabel('%')
+plt.grid(1)
+
+# Some trick for setting proprely the legend
+plt.hist([file-0.15],1, weights=[(sum(countCommon)/len(countCommon))],color = ['green'],
+        edgecolor = 'black',rwidth = 0.3, label = ['Recall'])
+plt.hist([file+0.15],1, weights=[(sum(countCommon)/len(countCommon))],color = ['yellow'],
+        edgecolor = 'black',rwidth = 0.3, label = ['Precision'])
+plt.legend(loc='best')
